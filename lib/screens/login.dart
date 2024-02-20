@@ -17,11 +17,15 @@ class LoginPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
+            children: [ 
               TextField(
                 decoration: InputDecoration(
                   hintText: 'Email',
-                  prefixIcon: Icon(Icons.email),
+                  icon: Container(
+                    width: 24, // Adjust the width as needed
+                    height: 24, // Adjust the height as needed
+                    child: Icon(Icons.email, color: Colors.black),
+                  ),
                   filled: true,
                   fillColor: Colors.grey[200],
                   border: OutlineInputBorder(
@@ -49,7 +53,11 @@ class LoginPage extends StatelessWidget {
                 obscureText: obscureText,
                 decoration: InputDecoration(
                   hintText: 'Password',
-                  prefixIcon: Icon(Icons.lock),
+                  prefixIcon: Container(
+                    width: 24, // Adjust the width as needed
+                    height: 24, // Adjust the height as needed
+                    child: Icon(Icons.lock),
+                  ),
                   suffixIcon: IconButton(
                     icon: Icon(obscureText ? Icons.visibility : Icons.visibility_off),
                     onPressed: () {
