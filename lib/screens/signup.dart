@@ -1,15 +1,35 @@
 import 'package:flutter/material.dart';
 import '../utility/colors.dart';
-import 'signup.dart';
+import 'login.dart';
 
-class LoginPage extends StatefulWidget {
+class SignUpPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   bool isChecked = false; // Initial state of the checkbox
   bool obscureText = true; // Initial state of password visibility
+
+  InputDecoration customInputDecoration(String hintText, IconData icon) {
+    return InputDecoration(
+      hintText: hintText,
+      prefixIcon: Container(
+        width: 24, // Adjust the width as needed
+        height: 24, // Adjust the height as needed
+        child: Icon(icon, color: Colors.black),
+      ),
+      filled: true,
+      fillColor: Colors.grey[200],
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10.0),
+        borderSide: const BorderSide(
+          color: AppColors.borderColor,
+          width: 3.0,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +47,10 @@ class _LoginPageState extends State<LoginPage> {
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 12.0),
                 child: Text(
-                  "Login",
+                  "Sign Up",
                   style: TextStyle(
                     fontSize: 30, // Larger font size
+                    fontFamily: 'Inter',
                     fontWeight: FontWeight.w700,
                     color: AppColors.darkGreen, // Dark green font color
                   ),
@@ -38,36 +59,16 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 20),
               TextField(
-                decoration: InputDecoration(
-                  hintText: 'Email',
-                  prefixIcon: Container(
-                    width: 24, // Adjust the width as needed
-                    height: 24, // Adjust the height as needed
-                    child: const Icon(Icons.email, color: Colors.black),
-                  ),
-                  filled: true,
-                  fillColor: Colors.grey[200],
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
+                decoration: customInputDecoration('Name', Icons.account_circle),
               ),
               const SizedBox(height: 20),
-              Row(
-                children: [
-                  Checkbox(
-                    value: isChecked,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isChecked = value!;
-                      });
-                    },
-                  ),
-                  const Text('Check email after login'),
-                ],
+              TextField(
+                decoration:
+                    customInputDecoration('Phone Number', Icons.local_phone),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                decoration: customInputDecoration('Email', Icons.email),
               ),
               const SizedBox(height: 20),
               TextField(
@@ -77,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                   prefixIcon: Container(
                     width: 24, // Adjust the width as needed
                     height: 24, // Adjust the height as needed
-                    child: const Icon(Icons.lock, color: Colors.black),
+                    child: Icon(Icons.lock, color: Colors.black),
                   ),
                   suffixIcon: IconButton(
                     color: Colors.black,
@@ -95,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: const BorderSide(
-                      color: Colors.grey,
+                      color: AppColors.borderColor,
                     ),
                   ),
                 ),
@@ -113,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 child: const Text(
-                  'Login',
+                  'Sign Up',
                   style: TextStyle(
                     color: Colors.white, // Text color
                     fontFamily: 'Inter', // Font family
@@ -150,11 +151,11 @@ class _LoginPageState extends State<LoginPage> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SignUpPage()),
+                    MaterialPageRoute(builder: (context) => LoginPage()),
                   );
                 },
                 child: const Text(
-                  "Don't have an account? Sign up here",
+                  "Already have an account? Login here",
                   style: TextStyle(
                     color: Colors.blue,
                     decoration: TextDecoration.underline,
